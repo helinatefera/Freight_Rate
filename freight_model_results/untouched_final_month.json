@@ -1,0 +1,20 @@
+{
+  "selected_candidate_id": "hist_gradient_boosting__log__config_1",
+  "selected_family": "hist_gradient_boosting",
+  "target_mode": "log",
+  "outlier_policy": "all_rows",
+  "params": {
+    "model__max_iter": 150,
+    "model__learning_rate": 0.04,
+    "model__max_leaf_nodes": 31,
+    "model__l2_regularization": 0.0
+  },
+  "training_period": "before 2025-10",
+  "untouched_month": "2025-10",
+  "fit_rows": 43147,
+  "validation_rows": 4853,
+  "smearing_factor": 1.0119925921168886,
+  "rmse": 648.1435266276043,
+  "mae": 115.39363998271931,
+  "r2": 0.8202042725535854
+}

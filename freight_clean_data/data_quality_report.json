@@ -1,0 +1,142 @@
+{
+  "pipeline": {
+    "outlier_low_rpm": 0.5,
+    "outlier_high_rpm": 6.0,
+    "coordinate_count": 72,
+    "weight_imputation": "equipment median, then training global median",
+    "market_quote_imputation": "same-date median, then training date median, then training global median",
+    "december_covariate_source": "validation.csv date-level median",
+    "original_distance_preserved": true
+  },
+  "input_profiles": [
+    {
+      "name": "train-test.csv",
+      "rows": 48000,
+      "columns": [
+        "load_id",
+        "pickup",
+        "delivery",
+        "pickup_lat",
+        "pickup_lon",
+        "delivery_lat",
+        "delivery_lon",
+        "distance",
+        "equipment",
+        "weight",
+        "date",
+        "market_index",
+        "quote_signal",
+        "posted_rate"
+      ],
+      "duplicate_rows": 0,
+      "duplicate_load_ids": 0,
+      "missing_by_column": {
+        "load_id": 0,
+        "pickup": 0,
+        "delivery": 0,
+        "pickup_lat": 0,
+        "pickup_lon": 0,
+        "delivery_lat": 0,
+        "delivery_lon": 0,
+        "distance": 0,
+        "equipment": 0,
+        "weight": 300,
+        "date": 0,
+        "market_index": 374,
+        "quote_signal": 0,
+        "posted_rate": 0
+      },
+      "date_min": "2025-01-01",
+      "date_max": "2025-10-31",
+      "unique_pickup_cities": 64,
+      "unique_delivery_cities": 64,
+      "negative_weight_rows": 292,
+      "target_outliers": {
+        "low_rpm_below_0_5": 103,
+        "high_rpm_above_6": 270,
+        "posted_rate_below_200": 47,
+        "posted_rate_above_10000": 103
+      },
+      "unknown_cities": []
+    },
+    {
+      "name": "validation.csv",
+      "rows": 12000,
+      "columns": [
+        "load_id",
+        "pickup",
+        "delivery",
+        "pickup_lat",
+        "pickup_lon",
+        "delivery_lat",
+        "delivery_lon",
+        "distance",
+        "equipment",
+        "weight",
+        "date",
+        "market_index",
+        "quote_signal"
+      ],
+      "duplicate_rows": 0,
+      "duplicate_load_ids": 0,
+      "missing_by_column": {
+        "load_id": 0,
+        "pickup": 0,
+        "delivery": 0,
+        "pickup_lat": 0,
+        "pickup_lon": 0,
+        "delivery_lat": 0,
+        "delivery_lon": 0,
+        "distance": 0,
+        "equipment": 0,
+        "weight": 165,
+        "date": 0,
+        "market_index": 249,
+        "quote_signal": 0
+      },
+      "date_min": "2025-11-01",
+      "date_max": "2025-12-31",
+      "unique_pickup_cities": 72,
+      "unique_delivery_cities": 72,
+      "negative_weight_rows": 145,
+      "target_outliers": null,
+      "unknown_cities": []
+    },
+    {
+      "name": "december-chart-inputs.csv",
+      "rows": 31,
+      "columns": [
+        "pickup",
+        "delivery",
+        "distance",
+        "equipment",
+        "weight",
+        "date",
+        "predicted_rate"
+      ],
+      "duplicate_rows": 0,
+      "duplicate_load_ids": null,
+      "missing_by_column": {
+        "pickup": 0,
+        "delivery": 0,
+        "distance": 0,
+        "equipment": 0,
+        "weight": 0,
+        "date": 0,
+        "predicted_rate": 31
+      },
+      "date_min": "2025-12-01",
+      "date_max": "2025-12-31",
+      "unique_pickup_cities": 1,
+      "unique_delivery_cities": 1,
+      "negative_weight_rows": 0,
+      "target_outliers": null,
+      "unknown_cities": []
+    }
+  ],
+  "output_files": {
+    "prepared_train": "prepared_train.csv",
+    "prepared_validation": "prepared_validation.csv",
+    "prepared_december": "prepared_december.csv"
+  }
+}
